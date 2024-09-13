@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}Mol List{% endblock %}
+
+{% block content %}
+    <h1 class="text-center">Molecules</h1>
+
+    <a class="btn btn-primary mb-4" href="{% url 'add_mol' %}">Add New Molecule</a>
+
+    <div class="accordion" id="accordionExample">
+        {% for mol  in  mols %}
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                <button class="accordion-button " type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{mol.id}}" aria-expanded="true" aria-controls="collapseOne">
+                    {{mol.pdb_id}}
+                </button>
+                </h2>
+                <div id="collapse{{mol.id}}" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    {{mol.description}} <br>
+                    <strong>{{mol.user_id}} - {{mol.entry_date}}</strong>
+                    <br>
+                    <a class="btn btn-primary mb-4" href="{% url 'mol_edit' mol_id=mol.id %}">Edit</a>
+                    <a class="btn btn-danger mb-4" href="{% url 'mol_delete' mol_id=mol.id %}">Delete</a>
+                </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
