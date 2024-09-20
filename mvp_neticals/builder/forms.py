@@ -1,11 +1,20 @@
 from django import forms
 from .models import PDBFiles
-
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
 class MolBuilderForm(forms.ModelForm):
     class Meta:
         model = PDBFiles
         fields =  ['pdb_id', 'entry_date', 'description']
+
+
+class UserRegistrationForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'username', 'email', 'password1', 'password2')
+
+
 
 # class UploadFileForm(forms.Form):
 #     title = forms.CharField(max_length=50)

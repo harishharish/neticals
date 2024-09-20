@@ -20,8 +20,10 @@
                     {{mol.description}} <br>
                     <strong>{{mol.user_id}} - {{mol.entry_date}}</strong>
                     <br>
+                    {% if mol.user == user %}
                     <a class="btn btn-primary mb-4" href="{% url 'mol_edit' mol_id=mol.id %}">Edit</a>
                     <a class="btn btn-danger mb-4" href="{% url 'mol_delete' mol_id=mol.id %}">Delete</a>
+                    {% endif %}
                 </div>
                 </div>
             </div>
